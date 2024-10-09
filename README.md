@@ -114,3 +114,12 @@ For better or worse, the ecosystem is structured around plugins. Use package nam
 * `2.0.0`
   * no more breaking changes until next major
 
+## Type Alias vs fun interface
+
+I'm using fun interfaces for KDoc
+
+Links
+* https://kotlinlang.org/docs/fun-interfaces.html#functional-interfaces-vs-type-aliases
+* https://youtrack.jetbrains.com/issue/KT-23203
+
+
