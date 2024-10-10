@@ -122,4 +122,6 @@ Links
 * https://kotlinlang.org/docs/fun-interfaces.html#functional-interfaces-vs-type-aliases
 * https://youtrack.jetbrains.com/issue/KT-23203
 
+## Return types
 
+Use Arrow Raise internally. Externally, map to a custom `Either` or a `kotlin.Result`
