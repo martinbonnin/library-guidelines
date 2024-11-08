@@ -125,3 +125,10 @@ Links
 ## Return types
 
 Use Arrow Raise internally. Externally, map to a custom `Either` or a `kotlin.Result`
+
+
+## Changing an interface to a class or the opposite
+
+It's source-compatible but not binary compatible:
+* https://kotlinlang.slack.com/archives/C8C4JTXR7/p1715676001099139
+* https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-5.html#jvms-5.4.3.3
