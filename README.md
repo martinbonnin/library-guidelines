@@ -132,3 +132,40 @@ Use Arrow Raise internally. Externally, map to a custom `Either` or a `kotlin.Re
 It's source-compatible but not binary compatible:
 * https://kotlinlang.slack.com/archives/C8C4JTXR7/p1715676001099139
 * https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-5.html#jvms-5.4.3.3
+
+
+# Resource handling
+
+Ideally the user has no resource management and leave it to the garbage collector (classes, caches) or idle timeouts (sockets, executors).
+
+Some cases might need manual resource management:
+  * File descriptors (files, sockets, etc...). Closing them in the finalizer is usually not recommended (TODO: why?) and K/N has no finalizer anyways.
+  * Usage of APIs that have a close() themselves (`NSURLSession`, etc...)
+  * Non-daemon threads? (TODO: why not make them daemon then..)
+  * Others?
+
+In all cases, the garbage collector and idle timeouts have no prompt execution guarantees and a `close()` function is recommended to promptly release everything. For an example, to let the JVM exit properly or to avoid allocating too many file descriptors at the same time in a tight loop.
+
+If possible, extending from `Closeable` make it easy to use the `use {}` pattern:
+
+```kotlin
+resource.use {
+  consume(it)
+}
+```
+
+## Resources and `Builders`
+
+`Builders` can be reused to create multiple objects. If a resource is passed as an argument to a `Builder`, it must be managed by the caller to avoid the situation where the resource is closed several times:
+
+```kotlin
+val client = Client.Builder()
+               .resource(MyResource())
+               .build()
+
+val client2 = client.newBuilder()
+               // some other config
+               .build()
+
+client.close() // oh no, this also closes the client2 resource 🙈
+```
