@@ -169,3 +169,6 @@ val client2 = client.newBuilder()
 
 client.close() // oh no, this also closes the client2 resource 🙈
 ```
+
+
+https://bsky.app/profile/romainguy.dev/post/3lbd6iincdc23
