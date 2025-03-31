@@ -116,11 +116,12 @@ For better or worse, the ecosystem is structured around plugins. Use package nam
 
 ## Type Alias vs fun interface
 
-I'm using fun interfaces for KDoc
+I'm using fun interfaces for KDoc (but they may break source compatibility)
 
 Links
 * https://kotlinlang.org/docs/fun-interfaces.html#functional-interfaces-vs-type-aliases
 * https://youtrack.jetbrains.com/issue/KT-23203
+* https://bsky.app/profile/saket.me/post/3lloqr74dys2c
 
 ## Return types
 
